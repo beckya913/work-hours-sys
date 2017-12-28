@@ -39,7 +39,7 @@
 	</script>
 	<div class="container-fluid">
         <h2 class="text-center">新增紀錄</h2>
-		<form action="action_create" method="POST" enctype="multipart/form-data" class="">
+		<form action="action_create" method="POST" enctype="multipart/form-data" id="hours_submit">
 <input id="add" value="新增一列" type="button" class="">
 <input id="remove" value="移除最後一列" type="button" class="uk-button">
 		<table id="items" class="table">
@@ -66,8 +66,8 @@
 						<?php } ?>
 					</td>
 					<td>
-         	<select name="work_category[]" value="<?php echo set_value('work_category[]'); ?>" id="work_category" class="form-control work_category" onchange="getsubcategory(this.id);">
-                <option>選擇類別</option>
+         	<select name="work_category[]" value="<?php echo set_value('work_category[]'); ?>" id="work_category" class="form-control work_category" onchange="getsubcategory(this.id);" required>
+                <option>必填</option>
 <?php 
 //取得類別
 $query = $this->db->get('categories');
@@ -80,8 +80,8 @@ $name=$row->name; ?>
 </select>
          </td>
          <td>
-         	<select name="sub_work_category[]" value="<?php echo set_value('sub_work_category[]'); ?>" id="sub_work_category" class="form-control sub_work_category">
-                <option>選擇細項工作</option>
+         	<select name="sub_work_category[]" value="<?php echo set_value('sub_work_category[]'); ?>" id="sub_work_category" class="form-control sub_work_category" required>
+                <option>必填</option>
 </select>
 <script type="text/javascript">
 
@@ -110,14 +110,14 @@ $name=$row->name; ?>
 
          </td>
          <td>
-         	<input id="work_date" size="" type="text" name="work_date[]" value="<?php echo set_value('work_date'); ?>" class="datepicker form-control input-sm" >
+         	<input id="work_date" size="10" type="text" name="work_date[]" value="<?php echo set_value('work_date[]'); ?>" class="datepicker form-control" placeholder="必填" required>
          </td>
          <td>
-         	<input type="text" name="work_hours[]" value="<?php echo set_value('work_hours'); ?>" class="form-control" size="6">
+         	<input type="text" name="work_hours[]" value="<?php echo set_value('work_hours[]'); ?>" class="form-control" size="6" placeholder="必填" required>
          </td>
          <td>
          
-         	<input id="project_code" type="text" name="project_code[]" value="<?php echo set_value('project_code'); ?>" class="form-control project_code" onclick="selectValue(this.id)">
+         	<input id="project_code" type="text" name="project_code[]" value="<?php echo set_value('project_code[]'); ?>" size="10" class="form-control project_code" onclick="selectValue(this.id)">
          <script type="text/javascript">
             function selectValue(a){
             var NewArray= a.replace('project_code','');
@@ -133,9 +133,9 @@ $name=$row->name; ?>
 
                                   </script>
          </td>
-         <td><input type="text" name="remark[]" value="<?php echo set_value('remark'); ?>" class="form-control" class="form-control input-sm"></td>
-         <td><input id="project_name" type="text" name="project_name[]" value="<?php echo set_value('project_name'); ?>" class="form-control project_name"></td>
-         <td><input id="project_status" type="text" name="project_status[]" value="<?php echo set_value('project_status'); ?>" class="form-control project_status" size="6"></td>
+         <td><input type="text" name="remark[]" value="<?php echo set_value('remark[]'); ?>" class="form-control" class="form-control"></td>
+         <td><input id="project_name" type="text" name="project_name[]" value="<?php echo set_value('project_name[]'); ?>" class="form-control project_name"></td>
+         <td><input id="project_status" type="text" name="project_status[]" value="<?php echo set_value('project_status[]'); ?>" class="form-control project_status" size="6"></td>
    				</tr>
 
 </tbody>

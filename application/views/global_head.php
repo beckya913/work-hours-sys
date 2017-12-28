@@ -33,7 +33,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <script src="<?php echo base_url(); ?>js/jquery-ui.js"></script>
     <script src="<?php echo base_url(); ?>js/jquery.dataTables.min.js"></script>
     <script src="<?php echo base_url(); ?>js/FileSaver.min.js"></script>
-    <script src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url(); ?>js/jquery.validate.min.js"></script>
     
     <script type="text/javascript">// Enable date picker
 		 $(function() {
@@ -41,5 +41,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		
 		  });
 	</script>
+	<!-- Form Validation -->
+    <script type="text/javascript">
+    $(function(){
+		$("#hours_submit").validate();
+	});
+    </script>
 	
 </head>

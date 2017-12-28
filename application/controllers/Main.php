@@ -3,19 +3,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Main extends CI_Controller {
 
-	public function index()
-	{
+	public function index(){
 		$this->load->view('create');
 	}
 
-	public function create()
-	{
+	public function create(){
 		$this->load->model('Git_db_workhours');
 		$this->load->view('create');
 	}
 
-	public function action_create()
-	{
+	public function action_create(){
+			
 				$this->load->model('Git_db_workhours');
 				//寫入記錄至 Report
 				$newRow = array(
@@ -68,7 +66,7 @@ class Main extends CI_Controller {
 		
 	}
 
-	public function review_filter() {
+	public function review_filter(){
 
 		
 		$query=$this->db->where('work_date >=', $this->input->post('startdate'))
