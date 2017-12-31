@@ -7,6 +7,11 @@ class Main extends CI_Controller {
 		$this->load->view('create');
 	}
 
+	public function test(){
+		
+		$this->load->view('test');
+	}
+
 	public function create(){
 		$this->load->model('Git_db_workhours');
 		$this->load->view('create');
@@ -79,6 +84,18 @@ class Main extends CI_Controller {
 
 		$this->load->view('review',$data);
 	}
+
+	public function get_main_category(){
+
+		$this->load->model('Git_db_workhours');
+		if(isset($_POST['department']))
+       {
+           $this->output
+           ->set_content_type("application/json")
+           ->set_output(json_encode($this->Git_db_workhours->get_main_category($_POST['department'])));
+       }
+
+    }
 
 	public function get_sub_category(){
 
@@ -160,20 +177,32 @@ class Main extends CI_Controller {
 
     }
 
+    public function action_create_main_category(){
+
+		$this->load->model('Git_db_workhours');
+		$newRow = array(
+					'name' => $this->input->post('name'),
+					'department' => $this->input->post('department'),
+				);
+		$this->Git_db_workhours->insert_main_catecogy($newRow);
+		echo "<html><head><meta charset='utf-8'></head><body><script type='text/javascript'>
+					alert('新增類別成功！');
+					window.location.href='review_category_item';
+				  </script></body></html>";
+		
+    }
+
     public function action_create_category_item(){
 
     	$this->load->model('Git_db_workhours');
 		$newRow = array(
-					'code' => $this->input->post('code'),
-					'name' => $this->input->post('name'),
-					'status' => $this->input->post('status'),
-					'start_date' => $this->input->post('start_date'),
-					'end_date' => $this->input->post('start_date'),
+					'cid' => $this->input->post('cid'),
+					'item' => $this->input->post('item'),
 				);
-		$this->Git_db_workhours->insert_project($newRow);
+		$this->Git_db_workhours->insert_category_item($newRow);
 		echo "<html><head><meta charset='utf-8'></head><body><script type='text/javascript'>
-					alert('新增專案成功！');
-					window.location.href='review_project_advance';
+					alert('新增細項工作成功！');
+					window.location.href='review_category_item';
 				  </script></body></html>";
 
     }
@@ -182,24 +211,20 @@ class Main extends CI_Controller {
 
 		$this->load->model('Git_db_workhours');
 		$id= $this->uri->segment(3);
-		$data['results'] = $this->Git_db_workhours->get_project_all($id);
-		$this->load->view('project_list_update', $data);
+		$data['results'] = $this->Git_db_workhours->get_category_all($id);
+		$this->load->view('category_item_update', $data);
 	}
 
 	public function action_update_category_item(){
 
     	$this->load->model('Git_db_workhours');
 		$newRow = array(
-					'code' => $this->input->post('code'),
-					'name' => $this->input->post('name'),
-					'status' => $this->input->post('status'),
-					'start_date' => $this->input->post('start_date'),
-					'end_date' => $this->input->post('end_date'),
+					'item' => $this->input->post('item'),
 				);
-		$this->Git_db_workhours->update_project($newRow);
+		$this->Git_db_workhours->update_category_item($newRow);
 		echo "<html><head><meta charset='utf-8'></head><body><script type='text/javascript'>
-					alert('修改專案成功！');
-					window.location.href='review_project_advance';
+					alert('修改細項工作成功！');
+					window.location.href='review_category_item';
 				  </script></body></html>";
 
     }

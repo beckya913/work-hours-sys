@@ -19,6 +19,11 @@ class Git_db_workhours extends CI_Model {
         $this->db->insert('subcategories', $data);
     }
 
+    function insert_main_catecogy($data){
+    
+        $this->db->insert('categories', $data);
+    }
+
     function get_report(){
     
         $query = $this->db->order_by('submit_date', 'desc')->get('report'); 
@@ -82,6 +87,13 @@ class Git_db_workhours extends CI_Model {
     
         $query = $this->db->get_where('subcategories',array('id'=>$id));
         return $query->result();        
+
+    }
+
+    function get_main_category($id){
+
+    $query = $this->db->where('department',$id)->get('categories');          
+    return $query->result();
 
     }
 

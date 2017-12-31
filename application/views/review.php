@@ -111,6 +111,10 @@
 							<?php 
 								$query = $this->db->get_where('categories', array('cid'=>$row2->work_category));
 								foreach ($query->result() as $row5){ ?>
+
+							<?php 
+								$query = $this->db->get_where('subcategories', array('id'=>$row2->sub_work_category));
+								foreach ($query->result() as $row6){ ?>
 		
 					    	
 					    <tr>
@@ -122,7 +126,7 @@
 					          	<?php echo $row5->name; ?>
 					          </td>
 					          <td>
-					          	<?php echo $row2->sub_work_category; ?>
+					          	<?php echo $row6->item; ?>
 					          </td>
 					          <td>
 					          	<?php echo $row2->work_date; ?>
@@ -142,6 +146,7 @@
 					          <td><?php echo $row3->department; ?></td>
 					          <td><?php echo $row3->unit; ?></td>
 					    </tr>
+					    <?php } ?>
 					    <?php } ?>
 					    <?php } ?>
 					    <?php } ?>

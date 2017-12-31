@@ -100,7 +100,7 @@ $name=$row->name; ?>
           success: function(data) {
         $('#'+subworkcategory+' option').remove();
         $.each(data, function(i, data) {
-        $('#'+subworkcategory).append("<option value='" + data.item + "'>" + data.item + "</option>");
+        $('#'+subworkcategory).append("<option value='" + data.id + "'>" + data.item + "</option>");
     });
         }
          });
