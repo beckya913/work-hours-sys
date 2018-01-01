@@ -1,6 +1,7 @@
 <?php include("global_head.php"); //表頭 ?>
 <body>
 	<div class="container">
+	<h2 class="text-center">修改細項工作</h2>
 	<!-- 修改專案 -->
 	<?php
 		$attributes = array('class' => 'form', 'id' => '');

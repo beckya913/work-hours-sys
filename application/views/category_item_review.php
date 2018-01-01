@@ -1,16 +1,19 @@
 <?php include("global_head.php"); //表頭 ?>
 <body>
 	<?php include("global_header.php"); //導覽列 ?>
-	
+
 	<div class="container">
 	<h2 class="text-center">管理類別/細項工作</h2>
 
-	<div class="panel panel-info" id="add_new_category" style="display: none;">
-  <div class="panel-heading">
-    <h3 class="panel-title">新增類別</h3>
-  </div>
-  <div class="panel-body">
-    <form action="action_create_main_category" method="POST" class="form-horizontal">
+<!-- 新增類別的對話筐 -->
+<div class="modal fade" id="add_new_category" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">新增類別</h5>
+      </div>
+      <div class="modal-body" >
+        <form action="action_create_main_category" method="POST" class="form-horizontal" id="action_create_main_category">
 		 <div class="form-group">
 		   <label for="">類別名稱</label>
 		   <input type="text" class="form-control" name="name">
@@ -25,8 +28,12 @@
 		 </div>
 		 <button type="submit" class="btn btn-primary">新增</button>
 		</form>
+	
+
+      </div>
+    </div>
   </div>
-</div>
+</div><!-- End:新增類別的對話筐 -->
 	
 	<form action="action_create_category_item" method="POST"><!-- 新增專案 -->
 	<table class="table table-striped">
@@ -75,14 +82,16 @@
 					        }
 					   });//End:ajax
 					});
-					    $("#categories").change(function(){ // 轉至新增類別的功能頁
-							if ($("option:last").is(":selected")) {
-							$("#add_new_category").toggle(1000);
-							      }    
-							});
+					    
+						$("#categories").on("change", function () {  //顯示新增類別的功能      
+						    $modal = $('#add_new_category');
+						    if($(this).val() === 'addnew'){
+						        $modal.modal('show');
+						    }
+						});
 				</script>
 				</td>
-				<td><input type="text" name="item" value=""></td>
+				<td><input type="text" name="item" value="" class="form-control" placeholder="請輸入名稱"></td>
 			</tr>
 			
 		</tbody>
@@ -96,7 +105,6 @@
 				<th></th>
 				<th>細項工作</th>
 				<th>類別</th>
-				
 				<th>部門</th>
 			</tr>
 		</thead>
@@ -107,7 +115,7 @@
 								foreach ($query->result() as $row2){ ?>
 			<tr>
 				
-				<td><a href="<?php echo site_url("main/update_category_item/".$row->id); ?>" class="btn btn-primary">修改</a></td>
+				<td><a href="<?php echo site_url("main/update_category_item/".$row->id); ?>" class="btn btn-default">修改</a></td>
 				<td><?php echo $row->item; ?></td>
 				<td><?php echo $row2->name; ?></td>
 				
@@ -121,5 +129,11 @@
 	
 	</form><!-- End:修改專案 -->
 	</div>
+	<!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
+	
+    
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
+    
+    
 </body>
 </html>

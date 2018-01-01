@@ -57,12 +57,13 @@
 });
 
 	</script>
+	<div class="container-fluid">
 	<h2 class="text-center">瀏覽紀錄</h2>
 	
 	<form id="date_serch" action="review_filter" method="POST" class="">
 								    <label>日期區間</label><input type="text" class="datepicker" name="startdate" value=""/> 至
 								    <input type="text" class="datepicker" name="enddate" value=""/>
-								    <input type="submit" name="submit" value="確定" class="" />
+								    <input type="submit" name="submit" value="確定" class="btn btn-default" />
 								</form>
 	<form class=""><label>關鍵字</label><input class="" type="text" id="search"></form>
 	<hr>
@@ -159,6 +160,7 @@
 		</tr>
 	</tbody>
 </table>
+</div>
 </div>
 </body>
 </html>

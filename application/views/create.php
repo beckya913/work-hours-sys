@@ -40,8 +40,9 @@
 	<div class="container-fluid">
         <h2 class="text-center">新增紀錄</h2>
 		<form action="action_create" method="POST" enctype="multipart/form-data" id="hours_submit">
-<input id="add" value="新增一列" type="button" class="">
-<input id="remove" value="移除最後一列" type="button" class="uk-button">
+<input id="add" value="新增一列" type="button" class="btn btn-default">
+<input id="remove" value="移除最後一列" type="button" class="btn btn-default">
+
 		<table id="items" class="table">
 			<tbody>
    				<tr> 

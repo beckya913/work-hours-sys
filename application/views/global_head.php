@@ -25,11 +25,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <head>
 	<meta charset="utf-8">
 	<title>GIT 工時單系統</title>
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/bootstrap.min.css">
+	
+
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/jquery-ui.min.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/custom.css">
-	<script src="<?php echo base_url(); ?>js/jquery.js"></script>
-    <!-- Finish installation -->
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/bootstrap.min.css">
+
+	<script src="<?php echo base_url(); ?>js/jquery.min.js"></script>
     <script src="<?php echo base_url(); ?>js/jquery-ui.js"></script>
     <script src="<?php echo base_url(); ?>js/jquery.dataTables.min.js"></script>
     <script src="<?php echo base_url(); ?>js/FileSaver.min.js"></script>
@@ -38,7 +40,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     
     <script type="text/javascript">// Enable date picker
 		 $(function() {
-		    $( ".datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' });
+		    $( ".datepicker" ).datepicker({ dateFormat: 'yy-mm-dd',
+		    changeMonth: true,
+		    changeYear: true });
 		
 		  });
 	</script>

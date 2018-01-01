@@ -2,10 +2,19 @@ body {
   padding-top: 5rem;
 }
 
-#final-data{ font-size: 0.9em; }
+#final-data{ }
 
 #loginbox{
 	width: 350px;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+#action_create_main_category{
+	margin-left: 10px; 
+	margin-right: 10px;
+}
+
+#items{
+	margin-top: 10px;
 }
