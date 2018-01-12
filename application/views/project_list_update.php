@@ -26,7 +26,11 @@
 			</tr>
 			<input type="hidden" name="id" value="<?php echo $row->id; ?>">
 			<? }?>
-			<tr><td colspan="5"><input type="submit" name="submit" value="確定" class="btn btn-primary"></td></tr>
+			<tr>
+				<td colspan="5">
+					<input type="submit" name="submit" value="確定" class="btn btn-primary">
+					<input type="button" onclick="history.back();" value="取消" class="btn btn-default">
+				</td></tr>
 		</tbody>
 	</table>
 	

@@ -1,5 +1,12 @@
 <?php include("global_head.php"); //表頭 ?>
 <body>
+	<script type="text/javascript">// Enable date picker
+$(function() {
+   $( ".datepicker" ).datepicker({ dateFormat: 'yy-mm-dd',
+   changeMonth: true,
+   changeYear: true });
+ });
+</script>
 	<?php include("global_header.php"); //導覽列 ?>
 	<div class="container-fluid">
 	<script type="text/javascript"> // Launch serch function

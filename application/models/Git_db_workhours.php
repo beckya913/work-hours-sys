@@ -2,12 +2,12 @@
 
 class Git_db_workhours extends CI_Model { 
 
-	function __construct()
+	/*function __construct()
     {
         // 呼叫模型(Model)的建構函數
         parent::__construct();
         session_start();
-    }
+    }*/
 
     function insert($data){
 	
@@ -102,6 +102,32 @@ class Git_db_workhours extends CI_Model {
     $query = $this->db->where('cid',$id)->get('subcategories');          
     return $query->result();
 
+    }
+
+    function get_user(){
+    
+        $query = $this->db->order_by('username', 'desc')->get('authorize'); 
+        return $query->result();
+        
+    }
+
+    function get_user_all($id){
+    
+        $query = $this->db->get_where('authorize',array('id'=>$id));
+        return $query->result();        
+
+    }
+
+    function update_user($data) {
+        
+        $this->db->where('id', $this->input->post('id'));
+        $this->db->update('authorize',$data);
+    }
+
+    function update_user_profile($data) {
+        
+        $this->db->where('username', $this->input->post('username'));
+        $this->db->update('user_profile',$data);
     }
 
 }

@@ -3,13 +3,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Main extends CI_Controller {
 
+	public function __construct(){
+		
+	      session_start();
+	      parent::__construct();
+      	
+     }
+
 	public function index(){
 		$this->load->view('create');
-	}
-
-	public function test(){
-		
-		$this->load->view('test');
 	}
 
 	public function create(){
@@ -226,6 +228,19 @@ class Main extends CI_Controller {
 					alert('修改細項工作成功！');
 					window.location.href='review_category_item';
 				  </script></body></html>";
+
+    }
+
+    public function action_delete_category_item(){//刪除細項工作，目前轉址有問題
+
+    	$id= $this->uri->segment(3);
+    	$this->db->where('id', $id);
+        $this->db->delete('subcategories');
+		echo "<html><head><meta charset='utf-8'></head><body><script type='text/javascript'>
+					alert('刪除細項工作成功！');
+					window.location.href='review_category_item';
+				  </script></body></html>";
+		header("location: ".base_url()."main/review_category_item");
 
     }
 

@@ -4,7 +4,7 @@
 	<h2 class="text-center">修改細項工作</h2>
 	<!-- 修改專案 -->
 	<?php
-		$attributes = array('class' => 'form', 'id' => '');
+		$attributes = array('class' => 'form', 'id' => 'form1');
 		echo form_open('main/action_update_category_item', $attributes);  ?>
 
 		<table class="table table-striped">
@@ -28,7 +28,13 @@
 			<input type="hidden" name="id" value="<?php echo $row->id; ?>">
 			<? }?>
 			<? }?>
-			<tr><td colspan="5"><input type="submit" name="submit" value="確定" class="btn btn-primary"></td></tr>
+			<tr>
+				<td colspan="5">
+				<input type="submit" name="submit" value="確定" class="btn btn-primary">
+				<!--<a href="<?php echo site_url("main/action_delete_category_item/".$row->id); ?>">刪除</a>-->
+				<input type="button" onclick="history.back();" value="取消" class="btn btn-default">
+				</td>
+			</tr>
 		</tbody>
 	</table>
 	

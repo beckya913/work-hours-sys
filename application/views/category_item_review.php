@@ -13,10 +13,11 @@
         <h4 class="modal-title" id="exampleModalLabel">新增類別</h5>
       </div>
       <div class="modal-body" >
-        <form action="action_create_main_category" method="POST" class="form-horizontal" id="action_create_main_category">
+        <form data-toggle="validator" role="form" action="action_create_main_category" method="POST" class="form-horizontal" id="action_create_main_category">
 		 <div class="form-group">
 		   <label for="">類別名稱</label>
-		   <input type="text" class="form-control" name="name">
+		   <input type="text" class="form-control" name="name" data-error="名稱未填" required>
+		   <div class="help-block with-errors"></div>
 		 </div>
 		 <div class="form-group">
 		   <label for="">所屬部門</label>
@@ -27,6 +28,7 @@
 		</select>
 		 </div>
 		 <button type="submit" class="btn btn-primary">新增</button>
+		 <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
 		</form>
 	
 
@@ -35,7 +37,7 @@
   </div>
 </div><!-- End:新增類別的對話筐 -->
 	
-	<form action="action_create_category_item" method="POST"><!-- 新增專案 -->
+	<form data-toggle="validator" role="form" action="action_create_category_item" method="POST"><!-- 新增專案 -->
 	<table class="table table-striped">
 		<thead>
 			<tr>
@@ -91,7 +93,12 @@
 						});
 				</script>
 				</td>
-				<td><input type="text" name="item" value="" class="form-control" placeholder="請輸入名稱"></td>
+				<td>
+					<div class="form-group">
+					<input type="text" name="item" value="" class="form-control" placeholder="請輸入名稱" data-error="細項工作未填" required>
+					<div class="help-block with-errors"></div>
+					</div>
+				</td>
 			</tr>
 			
 		</tbody>

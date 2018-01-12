@@ -31,6 +31,7 @@
           <ul class="dropdown-menu">
             <li><a href="<?php echo base_url(); ?>main/review_project_advance">管理專案列表</a></li>
             <li><a href="<?php echo base_url(); ?>main/review_category_item">管理類別</a></li>
+            <li><a href="<?php echo base_url(); ?>authorize/create_user">管理使用者</a></li>
           </ul>
         </li>
       </ul>

@@ -1,9 +1,17 @@
 <?php include("global_head.php"); //表頭 ?>
 <body>
 	<?php include("global_header.php"); //導覽列 ?>
+	<script type="text/javascript">// Enable date picker
+		$(function() {
+   		$( ".datepicker" ).datepicker({ dateFormat: 'yy-mm-dd',
+   		changeMonth: true,
+   		changeYear: true });
+ 			});
+	</script>
 	<div class="container">
 	<h2 class="text-center">管理專案列表</h2>
-	<form action="action_create_project" method="POST"><!-- 新增專案 -->
+	<!-- 新增專案 -->
+	<form data-toggle="validator" role="form" action="action_create_project" method="POST">
 	<table class="table table-striped">
 		<thead>
 			<tr>
@@ -18,25 +26,45 @@
 		<tbody>
 			<tr>
 				<td>
-				<input type="submit" name="submit" value="新增" class="btn btn-primary"></td>
-				<td><input type="text" name="code" value="" class="form-control" placeholder="請輸入代碼"></td>
-				<td><input type="text" name="name" value="" class="form-control" placeholder="請輸入名稱"></td>
-				<td>
-					<select name="status" value="" class="form-control">
-						<option>選擇狀態</option>
-						<option value="OPEN">OPEN</option>
-						<option value="CLOSE">CLOSE</option>
-					</select>
+				<div class="form-group">
+					<input type="submit" name="submit" value="新增" class="btn btn-primary">
+				</div>
 				</td>
-				
-				<td><input type="text" name="start_date" value="" class="datepicker form-control"></td>
-				<td><input type="text" name="end_date" value="" class="datepicker form-control"></td>
+				<td>
+					<div class="form-group">
+						<input type="text" name="code" value="" class="form-control" placeholder="請輸入代碼" data-error="代碼未填" required>
+						<div class="help-block with-errors"></div>
+					</div>
+				</td>
+				<td>
+					<div class="form-group">
+						<input type="text" name="name" value="" class="form-control" placeholder="請輸入名稱" data-error="名稱未填" required>
+						<div class="help-block with-errors"></div>
+					</div>
+				</td>
+				<td>
+					<div class="form-group">
+						<select name="status" value="" class="form-control">
+							<option value="OPEN">OPEN</option>
+							<option value="CLOSE">CLOSE</option>
+						</select>
+					</div>
+				</td>
+				<td>
+					<div class="form-group">
+						<input type="text" name="start_date" value="" class="datepicker form-control" data-error="開案日期未填" required>
+						<div class="help-block with-errors"></div>
+					</div>
+				</td>
+				<td>
+					<div class="form-group">
+						<input type="text" name="end_date" value="" class="datepicker form-control">
+					</div>
+				</td>
 			</tr>
-			
 		</tbody>
 	</table>
-	</form><!-- End:新增專案 -->
-
+	</form> <!--End:新增專案 -->
 	<!-- 專案列表 -->
 	<table class="table table-striped">
 		<thead>
@@ -66,6 +94,7 @@
 	</table>
 	
 	</form><!-- End:修改專案 -->
+
 	</div>
 </body>
 </html>
