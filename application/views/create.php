@@ -47,8 +47,9 @@
     	});
 	</script>
 	<div class="container-fluid">
-        <h2 class="text-center">新增紀錄</h2>
-        <!--新增記錄表單-->
+    <h2 class="text-center">新增紀錄</h2>
+
+    <!--新增記錄表單-->
 		<form data-toggle="validator" role="form" action="action_create" method="POST" enctype="multipart/form-data" id="hours_submit">
             <input id="add" value="新增一列" type="button" class="btn btn-default">
             <input id="remove" value="移除最後一列" type="button" class="btn btn-default">
@@ -68,24 +69,38 @@
    				</tr>
    				<tr class="addrows">
          			<td><?php echo $_SESSION['username']; ?></td>
+              <?php 
+              $query = $this->db->get_where('user_profile', array('username'=>$_SESSION['username']));
+              foreach ($query->result() as $row){ 
+                $name_tw= $row->name_tw;
+                $division= $row->division;
+              }?>
          			<td width="80">
-         				<?php 
-							$query = $this->db->get_where('user_profile', array('username'=>$_SESSION['username']));
-							foreach ($query->result() as $row){ ?>
-							<?php echo $row->name_tw; ?>
-						<?php } ?>
+         			<?php echo $name_tw; ?>
 					</td>
 				<td>
                     <div class="form-group">
          	        <select name="work_category[]" value="<?php echo set_value('work_category[]'); ?>" id="work_category" class="form-control work_category" onchange="getsubcategory(this.id);" required>
                     <option>必填</option>
+                    <option>-- 產品開發處 --</option>
                         <?php //取得類別
-                        $query = $this->db->get('categories');
+                        /* 依照使用者所屬部門，載入類別
+                        $query = $this->db->where('department',$division)->get('categories');*/
+                        $query = $this->db->where('department','產品開發處')->get('categories');
                         foreach ($query->result() as $row){ 
                         $cid=$row->cid;
                         $name=$row->name; 
                         ?>
-
+                    <option value="<?php echo $cid; ?>"><?php echo $name; ?></option>  
+                        <?php } ?>
+                        <option>-- 軟體研發處 --</option>
+                        <?php //取得類別
+                        /* 依照使用者所屬部門，載入類別*/
+                        $query = $this->db->where('department','軟體研發處')->get('categories');
+                        foreach ($query->result() as $row){ 
+                        $cid=$row->cid;
+                        $name=$row->name; 
+                        ?>
                     <option value="<?php echo $cid; ?>"><?php echo $name; ?></option>  
                         <?php } ?>
                     </select>
@@ -93,7 +108,7 @@
                 </td>
                 <td>
          	        <select name="sub_work_category[]" value="<?php echo set_value('sub_work_category[]'); ?>" id="sub_work_category" class="form-control sub_work_category" required>
-                    <option>必填</option>
+                    <option>請選擇</option>
                     </select>
                     <script type="text/javascript">//依據類別，載入相關的工作細項
                             function getsubcategory(sel){

@@ -30,14 +30,12 @@
 		 <button type="submit" class="btn btn-primary">新增</button>
 		 <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
 		</form>
-	
-
       </div>
     </div>
   </div>
 </div><!-- End:新增類別的對話筐 -->
 	
-	<form data-toggle="validator" role="form" action="action_create_category_item" method="POST"><!-- 新增專案 -->
+	<form data-toggle="validator" role="form" action="action_create_category_item" method="POST"><!-- 新增細項工作 -->
 	<table class="table table-striped">
 		<thead>
 			<tr>
@@ -103,7 +101,7 @@
 			
 		</tbody>
 	</table>
-	</form><!-- End:新增專案 -->
+	</form><!-- End:新增細項工作 -->
 
 	<!-- 專案列表 -->
 	<table class="table table-striped">
@@ -118,8 +116,8 @@
 		<tbody>
 			<?php foreach($results as $row){ ?>
 			<?php 
-								$query = $this->db->get_where('categories', array('cid'=>$row->cid));
-								foreach ($query->result() as $row2){ ?>
+				$query = $this->db->get_where('categories', array('cid'=>$row->cid));
+				foreach ($query->result() as $row2){ ?>
 			<tr>
 				
 				<td><a href="<?php echo site_url("main/update_category_item/".$row->id); ?>" class="btn btn-default">修改</a></td>
