@@ -40,7 +40,7 @@
       <li class="nav-item">
     <a class="nav-link" disabled href="#">登入身份：<?php echo $_SESSION['username']; ?> <?php $query = $this->db->get_where('user_profile', array('username'=>$_SESSION['username']));
               foreach ($query->result() as $row){ ?>
-              <?php echo $row->name_tw; ?> <?php }?> ||</a>
+              <?php echo $row->name_tw; ?> <?php } ?> ||</a>
   </li>
   <li class="nav-item">
         <a class="nav-link" href="<?php echo base_url(); ?>authorize/logout">登出</a>

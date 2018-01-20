@@ -1,14 +1,6 @@
 <?php include("global_head.php"); //表頭 ?>
 <body>
 	<?php include("global_header.php"); //導覽列 ?>
-	<?php //查詢當日已有的筆數(即可得知最後一筆編號)
-
-				
-				$this->db->where('submit_date',date('Ymd'));
-				$this->db->from('report');
-				$record= $this->db->count_all_results();
-
-			?>
     <script type="text/javascript">// Enable date picker
          $(function() {
             $( ".datepicker" ).datepicker({ dateFormat: 'yy-mm-dd',
@@ -82,27 +74,15 @@
                     <div class="form-group">
          	        <select name="work_category[]" value="<?php echo set_value('work_category[]'); ?>" id="work_category" class="form-control work_category" onchange="getsubcategory(this.id);" required>
                     <option>必填</option>
-                    <option>-- 產品開發處 --</option>
-                        <?php //取得類別
-                        /* 依照使用者所屬部門，載入類別
-                        $query = $this->db->where('department',$division)->get('categories');*/
-                        $query = $this->db->where('department','產品開發處')->get('categories');
+                        <?php 
+                        $query = $this->db->get('categories');
                         foreach ($query->result() as $row){ 
                         $cid=$row->cid;
                         $name=$row->name; 
                         ?>
                     <option value="<?php echo $cid; ?>"><?php echo $name; ?></option>  
                         <?php } ?>
-                        <option>-- 軟體研發處 --</option>
-                        <?php //取得類別
-                        /* 依照使用者所屬部門，載入類別*/
-                        $query = $this->db->where('department','軟體研發處')->get('categories');
-                        foreach ($query->result() as $row){ 
-                        $cid=$row->cid;
-                        $name=$row->name; 
-                        ?>
-                    <option value="<?php echo $cid; ?>"><?php echo $name; ?></option>  
-                        <?php } ?>
+                        
                     </select>
                     </div>
                 </td>
@@ -143,8 +123,9 @@
                     </div>
                 </td>
                 <td>
-                    <div class="form-group">
-         	        <input id="project_code" type="text" name="project_code[]" value="<?php echo set_value('project_code[]'); ?>" size="10" class="form-control project_code" onclick="selectValue(this.id)">
+                  <div class="form-group">
+         	        <input id="project_code" type="text" name="project_code[]" value="<?php echo set_value('project_code[]'); ?>" size="10" class="form-control project_code" onclick="selectValue(this.id)" placeholder="必填" data-error="代碼未填" required>
+                  <div class="help-block with-errors"></div>
                     <script type="text/javascript">
                             function selectValue(a){
                                 var NewArray= a.replace('project_code','');
@@ -162,10 +143,10 @@
                     <input type="text" name="remark[]" value="<?php echo set_value('remark[]'); ?>" class="form-control" class="form-control">
                 </td>
                 <td>
-                    <input id="project_name" type="text" name="project_name[]" value="<?php echo set_value('project_name[]'); ?>" class="form-control project_name">
+                    <input id="project_name" type="text" name="project_name[]" value="<?php echo set_value('project_name[]'); ?>" class="form-control project_name" readonly>
                 </td>
                 <td>
-                    <input id="project_status" type="text" name="project_status[]" value="<?php echo set_value('project_status[]'); ?>" class="form-control project_status" size="6">
+                    <input id="project_status" type="text" name="project_status[]" value="<?php echo set_value('project_status[]'); ?>" class="form-control project_status" size="6" readonly>
                 </td>
    			</tr>
         </tbody>
@@ -177,14 +158,6 @@
 <!-- Hidden fields -->
 <input type="hidden" name="username" value="<?php echo $_SESSION['username']; ?>">
 <input type="hidden" name="publish_status" value="1">
-<input type="hidden" name="submit_date" value="<?php echo date('Ymd'); ?>">
-<input type="hidden" name="post_num" value="<?php if ($record ==0) { 
-echo "001"; //如果沒有001的紀錄，就填入001
-} else { echo sprintf("%03d",$record+1); } // 不然就填入最後一筆流水號＋1} ?>">
-<input type="hidden" name="report_num" 
-value="<?php echo date('Ymd'); ?><?php if ($record ==0) { 
-echo "001"; //如果沒有001的紀錄，就填入001
-} else { echo sprintf("%03d",$record+1); } // 不然就填入最後一筆流水號＋1} ?>">
 </form><!--End:新增記錄表單-->
     </div>
 

@@ -23,7 +23,7 @@
 			<tr>
 				<td><input type="text" name="item" class="form-control" value="<?php echo $row->item;; ?>"></td>
 				<td><input type="text" name="name" class="form-control" value="<?php echo $row2->name; ?>" readonly></td>
-				<td><input type="text" name="status" class="form-control" value="<?php echo $row2->department; ?>" readonly></td>
+				<td><input type="text" name="department" class="form-control" value="<?php echo $row2->department; ?>" readonly></td>
 			</tr>
 			<input type="hidden" name="id" value="<?php echo $row->id; ?>">
 			<? }?>

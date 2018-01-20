@@ -89,7 +89,7 @@
 				<td><?php echo $row->end_date; ?></td>
 			</tr>
 			<input type="hidden" name="id" value="<?php echo $row->id; ?>">
-			<? }?>
+			<? } ?>
 		</tbody>
 	</table>
 	

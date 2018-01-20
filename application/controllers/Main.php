@@ -20,14 +20,28 @@ class Main extends CI_Controller {
 	}
 
 	public function action_create(){
+
+		//查詢當日已有的筆數(即可得知最後一筆編號)
+
+				$this->db->where('submit_date',date('Ymd'));
+				$this->db->from('report');
+				$record= $this->db->count_all_results();
+
+				$submit_date= date('Ymd');
+				if ($record ==0) { $post_num= "001"; //如果沒有001的紀錄，就填入001
+				} else { $post_num= sprintf("%03d",$record+1); }
+				 
+				$report_num= $submit_date . $post_num;
+				echo $report_num;
+
 			
 				$this->load->model('Git_db_workhours');
 				//寫入記錄至 Report
 				$newRow = array(
-					'post_num' => $this->input->post('post_num'),
-					'submit_date' => $this->input->post('submit_date'),
+					'post_num' => $post_num,
+					'submit_date' => $submit_date,
 					'publish_status' => $this->input->post('publish_status'),
-					'report_num' => $this->input->post('report_num'),
+					'report_num' => $report_num,
 					'username' => $this->input->post('username'),
 
 				);
@@ -36,7 +50,7 @@ class Main extends CI_Controller {
 				$count = count($this->input->post('work_hours'));
 				for($i=0; $i<$count; $i++) {
 					$newRow_item[] = array(
-					'report_num' => $this->input->post('report_num'),
+					'report_num' => $report_num,
 					'work_category' => $this->input->post('work_category')[$i],
 					'sub_work_category' => $this->input->post('sub_work_category')[$i],
 					'work_date' => $this->input->post('work_date')[$i],
