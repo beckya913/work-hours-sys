@@ -48,18 +48,20 @@
 		    <table id="items" class="table">
 			<tbody>
    				<tr> 
+              <!--顯示姓名與工號
          			<th>工號</th>
-         			<th>姓名</th>
+         			<th>姓名</th>-->
          			<th>類別</th>
          			<th>細項工作</th>
          			<th>日期</th>
          			<th>時數</th>
          			<th>專案代碼</th>
-         			<th>備註</th>
          			<th>專案名稱</th>
-         			<th>專案狀態</th>
+         			<th style="display: none;">專案狀態</th>
+              <th>備註</th>
    				</tr>
    				<tr class="addrows">
+              <!--顯示姓名與工號
          			<td><?php echo $_SESSION['username']; ?></td>
               <?php 
               $query = $this->db->get_where('user_profile', array('username'=>$_SESSION['username']));
@@ -69,7 +71,7 @@
               }?>
          			<td width="80">
          			<?php echo $name_tw; ?>
-					</td>
+					</td>-->
 				<td>
                     <div class="form-group">
          	        <select name="work_category[]" value="<?php echo set_value('work_category[]'); ?>" id="work_category" class="form-control work_category" onchange="getsubcategory(this.id);" required>
@@ -118,13 +120,13 @@
                 </td>
                 <td>
                     <div class="form-group">
-         	        <input type="text" name="work_hours[]" value="<?php echo set_value('work_hours[]'); ?>" class="form-control" size="6" placeholder="必填" data-error="時數未填" required>
+         	        <input type="text" name="work_hours[]" value="<?php echo set_value('work_hours[]'); ?>" class="form-control" size="1" placeholder="必填" data-error="時數未填" required>
                     <div class="help-block with-errors"></div>
                     </div>
                 </td>
                 <td>
                   <div class="form-group">
-         	        <input id="project_code" type="text" name="project_code[]" value="<?php echo set_value('project_code[]'); ?>" size="10" class="form-control project_code" onclick="selectValue(this.id)" placeholder="必填" data-error="代碼未填" required>
+         	        <input id="project_code" type="text" name="project_code[]" value="<?php echo set_value('project_code[]'); ?>" size="10" class="form-control project_code" onclick="selectValue(this.id)" placeholder="必填" data-error="代碼未填" required readonly>
                   <div class="help-block with-errors"></div>
                     <script type="text/javascript">
                             function selectValue(a){
@@ -140,13 +142,13 @@
                     </div>
                 </td>
                 <td>
-                    <input type="text" name="remark[]" value="<?php echo set_value('remark[]'); ?>" class="form-control" class="form-control">
+                    <input id="project_name" type="text" name="project_name[]" value="<?php echo set_value('project_name[]'); ?>" class="form-control project_name" placeholder="必填" readonly>
                 </td>
-                <td>
-                    <input id="project_name" type="text" name="project_name[]" value="<?php echo set_value('project_name[]'); ?>" class="form-control project_name" readonly>
-                </td>
-                <td>
+                <td style="display: none;">
                     <input id="project_status" type="text" name="project_status[]" value="<?php echo set_value('project_status[]'); ?>" class="form-control project_status" size="6" readonly>
+                </td>
+                <td>
+                    <input type="text" name="remark[]" value="<?php echo set_value('remark[]'); ?>" class="form-control" class="form-control">
                 </td>
    			</tr>
         </tbody>
